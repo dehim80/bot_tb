@@ -32,7 +32,8 @@ async def balance(message: types.Message):
     equity = (balance['info']['result']['list'][0]['coin'][0]['equity'])
     unrealisedPnl = (balance['info']['result']['list'][0]['coin'][0]['unrealisedPnl'])
     cumRealisedPnl = (balance['info']['result']['list'][0]['coin'][0]['cumRealisedPnl'])
-    await message.answer(f'equity={equity}  unrealisedPnl={unrealisedPnl}  cumRealisedPnl={cumRealisedPnl}')
+    balance = (balance['info']['result']['list'][0]['coin'][0]['totalWalletBalance'])    
+    await message.answer(f'equity={equity}  balance={balance}  unrealisedPnl={unrealisedPnl}  cumRealisedPnl={cumRealisedPnl}')
 
 
 @dp.message_handler(commands=['cancell_all'])
