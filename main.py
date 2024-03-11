@@ -28,12 +28,12 @@ async def command_start(message: types.Message):
 @dp.message_handler(commands=['balance'])
 async def balance(message: types.Message):
     balance = bybit.fetch_balance()
+    print(balance)
     print(balance['info']['result']['list'][0]['coin'])
-    equity = (balance['info']['result']['list'][0]['coin'][0]['equity'])
+    equity = (balance['info']['result']['list'][0]['totalEquity'])
     unrealisedPnl = (balance['info']['result']['list'][0]['coin'][0]['unrealisedPnl'])
     cumRealisedPnl = (balance['info']['result']['list'][0]['coin'][0]['cumRealisedPnl'])
-    balance = (balance['info']['result']['list'][0]['coin'][0]['totalWalletBalance'])    
-    await message.answer(f'equity={equity}  balance={balance}  unrealisedPnl={unrealisedPnl}  cumRealisedPnl={cumRealisedPnl}')
+    await message.answer(f'equity={equity}  unrealisedPnl={unrealisedPnl}  cumRealisedPnl={cumRealisedPnl}')
 
 
 @dp.message_handler(commands=['cancell_all'])
